@@ -14,13 +14,26 @@ def coordinates_data(file):
     return data_x, data_y
 
 
-outer_r = int(input())
-dist = int(input())
-inner_r = outer_r - dist
+r_outer = int(input())
+distance_plates = int(input())
+r_interior = r_outer - distance_plates
 x, y = coordinates_data("coordinates.txt")
-max_value = max(max(x), max(y))
-pylab.xlim(0, max_value)
-pylab.ylim(inner_r, outer_r)
+pylab.xlim(0, max(max(x), max(y)))
+pylab.ylim(r_interior, r_outer)
 pylab.plot(x, y)
-pylab.title('coordinates')
+pylab.title("coordinates")
+pylab.show()
+
+x, y = coordinates_data("acceleration_time.txt")
+pylab.xlim(0, max(max(x), max(y)))
+pylab.ylim(0, max(max(x), max(y)))
+pylab.plot(x, y)
+pylab.title("acceleration_time")
+pylab.show()
+
+x, y = coordinates_data("speed_time.txt")
+pylab.xlim(0, max(max(x), max(y)))
+pylab.ylim(0, max(max(x), max(y)))
+pylab.plot(x, y)
+pylab.title("speed_time")
 pylab.show()
