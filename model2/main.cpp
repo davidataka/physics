@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cmath>
+#include <fstream>
 
 using namespace std;
 
@@ -22,6 +23,11 @@ void coordinates_change(double &x, double &y, double v_x, double r_now, double r
 }
 
 int main() {
+    /*0.000001
+    20000 19800
+    200000
+    1
+3   */
     double u_plates;
     double r_outer;
     double distance_plates;
@@ -48,7 +54,9 @@ int main() {
     double r_interior = r_outer - distance_plates;
     double r_now = (r_outer + r_interior) / 2;
 
-
+    ofstream coordinates("coordinates.txt");
+    ofstream speed_time("speed_time.txt");
+    ofstream acceleration_time("acceleration_time.txt");
     while ((r_now >= r_interior) && (r_now <= r_outer) && (x <= l)) {
         cout << "Time: " << time << " seconds" << endl;
         cout << "Coordinates: " << x << " " << y << endl;
@@ -56,7 +64,9 @@ int main() {
         cout << "Module speed_change : " << pow(pow(v_x, 2) + pow(v_y, 2), 0.5) << endl;
         cout << "Acceleration: " << a << endl;
         cout << endl;
-
+        coordinates << x << " " << r_now << endl;
+        speed_time << time << " " << v_y << endl;
+        acceleration_time << time << " " << a << endl;
         acceleration_change(a, u_plates, r_outer, r_interior, q_EL, M_EL, r_now);
         speed_change(a, v_y);
         radius_change(v_y, r_now);
