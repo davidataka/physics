@@ -1,7 +1,7 @@
 import pylab
 
 
-def parse(file):
+def coordinates_data(file):
     data = open(file, 'r')
     data_x = []
     data_y = []
@@ -17,7 +17,7 @@ def parse(file):
 outer_r = int(input())
 dist = int(input())
 inner_r = outer_r - dist
-x, y = parse("coordinates.txt")
+x, y = coordinates_data("coordinates.txt")
 max_value = max(max(x), max(y))
 pylab.xlim(0, max_value)
 pylab.ylim(inner_r, outer_r)
