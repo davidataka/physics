@@ -26,7 +26,7 @@ int main() {
     /*0.000001
     20000 19800
     200000
-    1
+    1 3
 3   */
     double u_plates;
     double r_outer;
